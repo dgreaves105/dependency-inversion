@@ -21,18 +21,32 @@ namespace API.Controllers
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
-        [HttpGet]
+        [HttpGet("Cookie")]
         [ProducesResponseType(typeof(IEnumerable<Cookie>), StatusCodes.Status200OK)]
         public async Task<IEnumerable<Cookie>> GetCookies()
         {
             return (await _mediator.Send(new GetCookies.Query()));
         }
 
-        [HttpPost()]
+        [HttpPost("Cookie")]
         [ProducesResponseType(typeof(decimal), StatusCodes.Status200OK)]
-        public async Task<int> PlaceOrder(Cookie cookie)
+        public async Task<int> CreateCookie(Cookie cookie)
         {
             return await _mediator.Send(new CreateCookie.Command { Cookie = cookie });
+        }
+
+        [HttpGet("Order")]
+        [ProducesResponseType(typeof(IEnumerable<CookieOrder>), StatusCodes.Status200OK)]
+        public async Task<IEnumerable<CookieOrder>> GetOrders()
+        {
+            return (await _mediator.Send(new GetOrders.Query()));
+        }
+
+        [HttpPost("Order")]
+        [ProducesResponseType(typeof(decimal), StatusCodes.Status200OK)]
+        public async Task<int> PlaceOrder(CookieOrder cookie)
+        {
+            return await _mediator.Send(new CreateOrder.Command { Order = cookie });
         }
     }
 }

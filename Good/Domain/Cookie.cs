@@ -1,5 +1,4 @@
-﻿using Domain.Toppings;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Domain
 {
@@ -8,6 +7,6 @@ namespace Domain
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
-        public IEnumerable<ITopping> Toppings { get; set; } = new List<ITopping>();
+        public IEnumerable<string> Toppings { get; set; } = new List<string>();
     }
 }

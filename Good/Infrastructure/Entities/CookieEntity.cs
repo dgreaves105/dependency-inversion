@@ -1,9 +1,5 @@
 ﻿using Domain;
-using Domain.Toppings;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Infrastructure.Entities
 {
@@ -21,19 +17,8 @@ namespace Infrastructure.Entities
                 Id = entity.Id,
                 Name = entity.Name,
                 Price = entity.Price,
-                Toppings = entity.Toppings.Select(t => MapToTopping(t))
+                Toppings = entity.Toppings
             };
-        }
-
-        private static ITopping MapToTopping(string toppingName)
-        {
-            switch (toppingName)
-            {
-                case "ChocolateChip":
-                    return new ChocolateChip();
-                default:
-                    throw new Exception();
-            }
         }
 
         public static explicit operator CookieEntity(Cookie cookie)
@@ -43,13 +28,8 @@ namespace Infrastructure.Entities
                 Id = cookie.Id,
                 Name = cookie.Name,
                 Price = cookie.Price,
-                Toppings = cookie.Toppings.Select(t => MapToppingToString(t))
+                Toppings = cookie.Toppings
             };
-        }
-
-        private static string MapToppingToString(ITopping topping)
-        {
-            return topping.GetType().Name;
         }
     }
 }

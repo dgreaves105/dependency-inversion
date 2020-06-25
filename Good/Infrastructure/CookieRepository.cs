@@ -17,10 +17,10 @@ namespace Infrastructure
             _cookieStore = cookieStore ?? throw new ArgumentNullException(nameof(cookieStore));
         }
 
-        public Task<int> Create(Cookie entity)
+        public async Task<int> Create(Cookie entity)
         {
             var cookieEntity = (CookieEntity)entity;
-            return _cookieStore.Create(cookieEntity);
+            return await _cookieStore.Create(cookieEntity);
         }
 
         public async Task<Cookie> Get(int identifier)

@@ -33,6 +33,8 @@ namespace API
 
             services.AddScoped<IRepository<Cookie>, CookieRepository>();
             services.AddSingleton<IStore<CookieEntity>, CookieStore>();
+            services.AddScoped<IRepository<CookieOrder>, OrderRepository>();
+            services.AddSingleton<IStore<OrderEntity>, OrderStore>();
 
             services.AddMvc().AddJsonOptions(o =>
                 {
